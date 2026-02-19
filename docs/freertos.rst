@@ -54,7 +54,10 @@ be made from a single task.
 
 In particular, the ``LittleFS`` and ``SDFS`` libraries can not be called from different
 threads.  Do all ``File`` operations from a single thread or else undefined behavior
-(aka strange crashes or data corruption) can occur.
+(aka strange crashes or data corruption) can occur. With the ``LittleFS`` library, you can enable thread safety 
+by defining ``LFS_THREADSAFE`` in your build process to enable threadsafety.  This will add a mutex to the ``LittleFS`` 
+implementation and use it to protect all calls into the library.  This will allow you to call ``LittleFS`` from multiple 
+threads without worrying about data corruption, but it will also add some overhead to each call.
 
 More Information
 ----------------
